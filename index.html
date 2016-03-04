@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="vendors/angular.min.js"></script>
+</head>
+<body>
+
+    <div ng-app="myApp" ng-controller="customersCtrl"> 
+
+    <table>
+      <tr ng-repeat="x in names">
+        <td>{{ x }}</td>
+      </tr>
+    </table>
+
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+
+        app.controller('customersCtrl', function($scope, $http) {
+            $http.get('server.php')
+                .then(function (response) {
+                    $scope.names = response.data;
+                    console.log(response.data);
+                }
+            );
+        });
+    </script>
+
+</body>
+</html>
+
