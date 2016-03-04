@@ -5,11 +5,13 @@
 </head>
 <body>
 
-    <div ng-app="myApp" ng-controller="customersCtrl"> 
+    <div ng-app="myApp" ng-controller="customersCtrl">
 
     <table>
       <tr ng-repeat="x in names">
-        <td>{{ x }}</td>
+        <td>{{ x.name }}</td>
+        <td>{{ x.address }}</td>
+        <td>{{ x.salary }}</td>
       </tr>
     </table>
 
@@ -22,7 +24,6 @@
             $http.get('server.php')
                 .then(function (response) {
                     $scope.names = response.data;
-                    console.log(response.data);
                 }
             );
         });

@@ -4,11 +4,10 @@ $db = new SQLite3('company.db');
 
 $results = $db->query('SELECT * FROM company');
 
-$jsonData = array();
-while ($row = $results->fetchArray()) {
-    $jsonData = $row;
+$rows = array();
+
+while($res = $results->fetchArray(SQLITE3_ASSOC)) {
+    array_push($rows, $res);
 }
 
-echo json_encode($jsonData);
-
-#echo xmlrpc_encode ($jsonData);
+echo json_encode($rows);
