@@ -1,34 +1,25 @@
+<!DOCTYPE html>
 <html>
-<head>
-    <title></title>
-    <script type="text/javascript" src="vendors/angular.min.js"></script>
-</head>
-<body>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="vendors/bootstrap.min.css">
+        <script src="vendors/angular.min.js"></script>
+        <script src="main.js"></script>
+    </head>
+    <body>
 
-    <div ng-app="myApp" ng-controller="customersCtrl">
+        <div class="container" ng-app="myApp" ng-controller="customersCtrl">
 
-    <table>
-      <tr ng-repeat="x in names">
-        <td>{{ x.name }}</td>
-        <td>{{ x.address }}</td>
-        <td>{{ x.salary }}</td>
-      </tr>
-    </table>
+            <h3>Weather Stations</h3>
 
-    </div>
+            <table class="table table-bordered">
+                <tr ng-repeat="x in names">
+                    <td>{{ x.name }}</td>
+                    <td>{{ x.measurement }}</td>
+                    <td class="{{x.color}}">{{ x.value }}</td>
+                </tr>
+            </table>
 
-    <script>
-        var app = angular.module('myApp', []);
-
-        app.controller('customersCtrl', function($scope, $http) {
-            $http.get('server.php')
-                .then(function (response) {
-                    $scope.names = response.data;
-                }
-            );
-        });
-    </script>
-
-</body>
+        </div>
+    </body>
 </html>
-
