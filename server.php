@@ -2,7 +2,20 @@
 
 $db = new SQLite3('company.db');
 
-$results = $db->query('SELECT * FROM company');
+$sql = <<<EOD
+    SELECT
+    station.name as name,
+    mesurement.name as measurement,
+    data.value as value,
+    mesurement.default_color as color
+    FROM data, station, mesurement
+    WHERE
+    data.id_mesurement = mesurement.id AND
+    data.id_station = station.id AND
+    station.id = mesurement.id_station
+EOD;
+
+$results = $db->query($sql);
 
 $rows = array();
 
