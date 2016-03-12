@@ -1,6 +1,6 @@
 <?php
 
-$db = new SQLite3('company.db');
+$db = new SQLite3('station.db');
 
 $sql = <<<EOD
     SELECT
