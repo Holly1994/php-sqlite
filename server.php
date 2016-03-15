@@ -7,12 +7,16 @@ $sql = <<<EOD
     station.name as name,
     mesurement.name as measurement,
     data.value as value,
-    mesurement.default_color as color
+    case
+    when data.value < low_value then mesurement.low_color
+    when data.value > high_value then mesurement.high_color
+    else mesurement.default_color
+    end as color
     FROM data, station, mesurement
     WHERE
     data.id_mesurement = mesurement.id AND
     data.id_station = station.id AND
-    station.id = mesurement.id_station
+    station.id = mesurement.id_station;
 EOD;
 
 $results = $db->query($sql);

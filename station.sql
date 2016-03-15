@@ -3,7 +3,7 @@ PRAGMA foreign_keys = ON;
 CREATE TABLE mesurement (
     id INTEGER PRIMARY KEY,
     id_station INTEGER,
-    name char(20),
+    name char(20), -- humidity, temperature
     default_color char(20),
     low_value char(20),
     low_color char(20),
@@ -33,14 +33,13 @@ CREATE TABLE data (
 INSERT INTO station (name)
 VALUES ('Cagliari'), ('Nuoro'), ('Oristano');
 
-INSERT INTO mesurement (id_station, name, default_color)
-VALUES
-(1, 'temperature', 'success'),
-(2, 'temperature', 'warning'),
-(3, 'temperature', 'danger');
+INSERT INTO mesurement (id_station, name, default_color, low_value, low_color, high_value, high_color)
+VALUES (1, 'temperature', 'success', 20, 'info', 28, 'danger'),
+(2, 'temperature', 'success', 10, 'info', 20, 'danger'),
+(3, 'temperature', 'success', 5, 'info', 10, 'danger');
 
 INSERT INTO data (id_station, id_mesurement, value)
-VALUES (1, 1, 15), (2, 2, 12), (3, 3, 2);
+VALUES (1, 1, 22), (2, 2, 4), (3, 3, 31);
 
 
 --
@@ -51,11 +50,13 @@ SELECT
 station.name as name,
 mesurement.name as measurement,
 data.value as value,
-mesurement.default_color as color
+case
+when data.value < low_value then mesurement.low_color
+when data.value > high_value then mesurement.high_color
+else mesurement.default_color
+end as color
 FROM data, station, mesurement
 WHERE
 data.id_mesurement = mesurement.id AND
 data.id_station = station.id AND
-station.id = mesurement.id_station
-
-;
+station.id = mesurement.id_station;
