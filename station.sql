@@ -9,6 +9,7 @@ CREATE TABLE mesurement (
     low_color char(20),
     high_value char(20),
     high_color char(20),
+    -- TODO add time (auto)
     FOREIGN KEY(id_station) REFERENCES station(id)
 );
 

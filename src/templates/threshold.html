@@ -1,0 +1,16 @@
+<h3>Update threshold</h3>
+
+<table class="table table-bordered" ng-controller="thresholdCtrl">
+    <tr><th>nome</th><th>low_value</th><th>high_value</th></tr>
+    <tr ng-repeat="x in thresholds">
+        <td>{{ x.name }}</td>
+        <td>
+            <input type="range" name="points" min="0" max="40"
+                value="{{ x.low_value - 0 + i }}" ng-model="x.low_value"> {{ x.low_value }}
+        </td>
+        <td>
+            <input type="range" name="points" min="0" max="40"
+                value="{{ x.high_value - 0 + i }}" ng-model="x.high_value"> {{ x.high_value }}
+        </td>
+    </tr>
+</table>

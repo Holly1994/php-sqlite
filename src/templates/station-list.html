@@ -1,6 +1,6 @@
 <h3>Weather Stations</h3>
 
-<table class="table table-bordered">
+<table class="table table-bordered" ng-controller="stationListCtrl">
     <tr><th>nome</th><th>misura</th><th>valore</th></tr>
     <tr ng-repeat="x in names">
         <td>{{ x.name }}</td>
