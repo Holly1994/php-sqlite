@@ -3,9 +3,8 @@
 $db = new SQLite3('station.db');
 
 $sql = <<<EOD
-    SELECT station.name, low_value, high_value
-    FROM mesurement, station
-    WHERE station.id=mesurement.id_station;
+    SELECT name, low_value, high_value
+    FROM mesurement;
 EOD;
 
 $results = $db->query($sql);

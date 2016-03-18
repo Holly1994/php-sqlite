@@ -1,30 +1,32 @@
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE mesurement (
-    id INTEGER PRIMARY KEY,
-    id_station INTEGER,
+    id INTEGER,
     name char(20), -- humidity, temperature
     default_color char(20),
     low_value char(20),
     low_color char(20),
     high_value char(20),
     high_color char(20),
-    -- TODO add time (auto)
-    FOREIGN KEY(id_station) REFERENCES station(id)
+    PRIMARY KEY(id)
 );
 
 CREATE TABLE station (
-    id INTEGER PRIMARY KEY,
-    name char(50)
+    id INTEGER,
+    name char(50),
+    PRIMARY KEY(id)
 );
 
 CREATE TABLE data (
-    id INTEGER PRIMARY KEY,
+    -- TODO add time (auto)
+    id KEY,
+    date DATETIME,
     id_station INTEGER,
     id_mesurement INTEGER,
     value REAL,
     FOREIGN KEY(id_station) REFERENCES station(id),
-    FOREIGN KEY(id_mesurement) REFERENCES mesurement(id)
+    FOREIGN KEY(id_mesurement) REFERENCES mesurement(id),
+    PRIMARY KEY(id)
 );
 
 --
@@ -34,13 +36,13 @@ CREATE TABLE data (
 INSERT INTO station (name)
 VALUES ('Cagliari'), ('Nuoro'), ('Oristano');
 
-INSERT INTO mesurement (id_station, name, default_color, low_value, low_color, high_value, high_color)
-VALUES (1, 'temperature', 'success', 20, 'info', 28, 'danger'),
-(2, 'temperature', 'success', 10, 'info', 20, 'danger'),
-(3, 'temperature', 'success', 5, 'info', 10, 'danger');
+INSERT INTO mesurement (name, default_color, low_value, low_color, high_value, high_color)
+VALUES ('temperature', 'success', 18, 'info', 22, 'danger'),
+('humidity', 'success', 50, 'info', 60, 'danger');
 
-INSERT INTO data (id_station, id_mesurement, value)
-VALUES (1, 1, 22), (2, 2, 4), (3, 3, 31);
+INSERT INTO data (id_station, id_mesurement, value, date)
+VALUES (1, 1, 15, 1458318738), (2, 1, 10, 1458318738), (3, 1, 14, 1458318738),
+(1, 2, 72, 1458318738), (2, 2, 54, 1458318738), (3, 2, 69, 1458318738);
 
 
 --
@@ -59,5 +61,4 @@ end as color
 FROM data, station, mesurement
 WHERE
 data.id_mesurement = mesurement.id AND
-data.id_station = station.id AND
-station.id = mesurement.id_station;
+data.id_station = station.id;
