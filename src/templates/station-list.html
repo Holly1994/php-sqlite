@@ -1,10 +1,10 @@
 <h3>Weather Stations</h3>
 
-<table class="table table-bordered" ng-controller="stationListCtrl">
-    <tr><th>nome</th><th>misura</th><th>valore</th></tr>
-    <tr ng-repeat="x in names">
+<table class="table table-bordered">
+    <tr><th>nome</th><th>temperature</th><th>humidity</th></tr>
+    <tr ng-repeat="x in data.data">
         <td>{{ x.name }}</td>
-        <td>{{ x.measurement }}</td>
-        <td class="{{ x.color }}">{{ x.value }}</td>
+        <td class="color {{ x.color_temperature }}">{{ x.temperature }}</td>
+        <td class="color {{ x.color_humidity }}">{{ x.humidity }}</td>
     </tr>
 </table>

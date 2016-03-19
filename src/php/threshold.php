@@ -3,8 +3,8 @@
 $db = new SQLite3('station.db');
 
 $sql = <<<EOD
-    SELECT name, low_value, high_value
-    FROM mesurement;
+    SELECT quantity, value_low, value_high
+    FROM threshold;
 EOD;
 
 $results = $db->query($sql);
