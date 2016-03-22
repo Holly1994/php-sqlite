@@ -4,22 +4,12 @@
         <title></title>
         <link rel="stylesheet" href="vendors/bootstrap.min.css">
         <script src="vendors/angular.min.js"></script>
-        <script src="main.js"></script>
+        <script src="src/js/main.js"></script>
     </head>
     <body>
-
-        <div class="container" ng-app="myApp" ng-controller="customersCtrl">
-
-            <h3>Weather Stations</h3>
-
-            <table class="table table-bordered">
-                <tr ng-repeat="x in names">
-                    <td>{{ x.name }}</td>
-                    <td>{{ x.measurement }}</td>
-                    <td class="{{x.color}}">{{ x.value }}</td>
-                </tr>
-            </table>
-
+        <div class="container" ng-app="myApp" ng-controller="stationListCtrl">
+            <ng-include src="'src/templates/station-list.html'"></ng-include>
+            <ng-include src="'src/templates/threshold.html'"></ng-include>
         </div>
     </body>
 </html>

@@ -1,0 +1,18 @@
+<h3>Update threshold</h3>
+
+<table class="table table-bordered">
+    <tr><th>nome</th><th>low_value</th><th>high_value</th></tr>
+    <tr ng-repeat="x in thresholds">
+        <td>{{ x.quantity }}</td>
+        <td>
+            <input type="range" name="{{ x.quantity }}-low" min="0" max="{{ x.value_high }}"
+                ng-change="changeColor()"
+                value="{{ x.value_low - 0 + i }}" ng-model="x.value_low"> {{ x.value_low }}
+        </td>
+        <td>
+            <input type="range" name="{{ x.quantity }}-high" min="{{ x.value_low }}" max="100"
+                ng-change="changeColor()"
+                value="{{ x.value_high - 0 + i }}" ng-model="x.value_high"> {{ x.value_high }}
+        </td>
+    </tr>
+</table>
