@@ -2,7 +2,7 @@
 
 <table class="table table-bordered">
     <tr><th>nome</th><th>low_value</th><th>high_value</th></tr>
-    <tr ng-repeat="x in thresholds">
+    <tr ng-repeat="x in data.colors">
         <td>{{ x.quantity }}</td>
         <td>
             <input type="range" name="{{ x.quantity }}-low" min="0" max="{{ x.value_high }}"

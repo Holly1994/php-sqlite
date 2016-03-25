@@ -1,17 +1,8 @@
 var app = angular.module('myApp', []);
 
 app.controller('stationListCtrl', function($scope, $http) {
-    $http.get('./src/php/server.php')
-        .then(function (response) {
-            $scope.data = response.data;
-        }
-    );
-    $http.get('./src/php/threshold.php')
-        .then(function (response) {
-            $scope.thresholds = response.data;
-        }
-    );
-    $scope.changeColor = function (event) {
+
+    $scope.changeColor = function () {
 
         var low, high, value;
 
@@ -32,4 +23,9 @@ app.controller('stationListCtrl', function($scope, $http) {
             });
         });
     };
+    $http.get('./src/php/server.php')
+        .then(function (response) {
+            $scope.data = response.data;
+        }
+    );
 });
