@@ -1,0 +1,20 @@
+<h3>Login form</h3>
+<div>
+    <form class="form-inline">
+        <div class="form-group">
+            <label for="exampleInputName2">User</label>
+            <input type="text" class="form-control" id="user" ng-model="user.name" placeholder="admin">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail2">Password</label>
+            <input type="password" class="form-control" ng-model="user.password" id="password">
+        </div>
+        <button type="submit" class="btn btn-default" ng-click="login(user)" id="button">Search</button>
+    </form>
+</div>
+<p></p>
+<div>
+    <p class="bg-success" ng-if="logged" id="login-message">Login succesful</p>
+    <p class="bg-danger" ng-if="!logged" id="login-message">wrong passowrd</p>
+</div>
+
