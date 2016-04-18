@@ -28,4 +28,7 @@ app.controller('stationListCtrl', function($scope, $http) {
             $scope.data = response.data;
         }
     );
+    $scope.login = function (user) {
+        $scope.logged = $scope.data.users[0].password === user.password ? true : false;
+    };
 });

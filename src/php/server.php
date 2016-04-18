@@ -1,6 +1,6 @@
 <?php
 
-function get_result ($sql) {
+function get ($sql) {
     $db = new SQLite3('station.db');
     $results = $db->query($sql);
     $rows = array();
@@ -10,7 +10,7 @@ function get_result ($sql) {
     return $rows;
 }
 
-$sql_threshold = <<<EOD
+$sql_color = <<<EOD
     SELECT
     quantity, value_low, color_low, value_high, color_high, color_default
     FROM threshold;
@@ -32,6 +32,15 @@ $sql_data = <<<EOD
     ) GROUP BY name;
 EOD;
 
-echo json_encode(array('data' => get_result($sql_data), 'colors' => get_result($sql_threshold)));
+$sql_user = <<<EOF
+    SELECT name, password
+    FROM user;
+EOF;
+
+echo json_encode(array(
+    'data' => get($sql_data),
+    'colors' => get($sql_color),
+    'users' => get($sql_user)
+));
 
 

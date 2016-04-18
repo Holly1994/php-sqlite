@@ -19,6 +19,14 @@ CREATE TABLE station (
     UNIQUE (name)
 );
 
+CREATE TABLE user (
+    id INTEGER,
+    name CHAR(50),
+    password PASSWORD(50),
+    PRIMARY KEY(id),
+    UNIQUE (name)
+);
+
 CREATE TABLE data (
     id KEY,
     date DATETIME,
@@ -34,6 +42,10 @@ CREATE TABLE data (
 --
 -- Insert data
 --
+
+INSERT INTO user (name, password)
+VALUES ('antonio', 'antonio16');
+
 
 INSERT INTO station (name)
 VALUES ('Cagliari'), ('Nuoro'), ('Oristano');
